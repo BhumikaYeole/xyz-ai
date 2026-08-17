@@ -1,3 +1,4 @@
+import Groq from 'groq-sdk';
 import { attendanceRecords, escalationRequests, students, users } from './data/seed';
 import { getConversationHistory, saveConversationHistory, type ChatMessage } from './conversation-store';
 import { AttendanceRecord, EscalationRequest, UserRole } from './types';
@@ -9,7 +10,7 @@ export type ToolDefinition = {
   description: string;
   parameters: {
     type: 'object';
-    properties: Record<string, { type: string; description: string; }>; 
+    properties: Record<string, { type: string; description: string; }>;
     required?: string[];
   };
 };
@@ -211,7 +212,7 @@ async function executeTool(role: UserRole, userId: string, toolName: ToolName, p
     }
     const student = getStudentById(studentId);
     if (!student) return { ok: false, message: 'Student not found.' };
-      const existing = attendanceRecords.findIndex((record) => record.studentId === studentId && record.date === date);
+    const existing = attendanceRecords.findIndex((record) => record.studentId === studentId && record.date === date);
     const payload: AttendanceRecord = {
       id: `att-${Date.now()}`,
       studentId,
@@ -296,10 +297,110 @@ async function executeTool(role: UserRole, userId: string, toolName: ToolName, p
 
 function detectIntent(role: UserRole, message: string) {
   const lower = message.toLowerCase();
+
   if (role === 'principal' && /(overall|school|all|summary)/.test(lower)) return 'getOverallAttendance';
-  if (role === 'teacher' && /(mark|present|absent|late)/.test(lower)) return 'markAttendance';
+  if (role === 'teacher' && /(mark|update|change|set|present|absent|late)/.test(lower)) return 'markAttendance';
+  if (['student', 'parent'].includes(role) && /(mark|update|change|set)/.test(lower) && /attendance/.test(lower)) {
+    return 'requestEscalation';
+  }
   if (['student', 'parent'].includes(role) && /(escalat|call|support|management|teacher)/.test(lower)) return 'requestEscalation';
   return 'getAttendance';
+}
+
+function toGroqToolDef(tool: ToolDefinition) {
+  return {
+    type: 'function',
+    function: {
+      name: tool.name,
+      description: tool.description,
+      parameters: {
+        type: 'object',
+        properties: tool.parameters.properties,
+        required: tool.parameters.required ?? [],
+      },
+    },
+  };
+}
+
+function toGroqMessages(role: UserRole, history: ChatMessage[], message: string) {
+  const conversation: Array<{ role: 'user' | 'assistant'; content: string }> = history.map((entry) => ({
+    role: entry.role === 'user' ? 'user' : 'assistant',
+    content: entry.content,
+  }));
+
+  return [
+    {
+      role: 'system' as const,
+      content: `${PERSONAS[role]} You are only allowed to call the permitted tools for this role. If required details are missing, ask a clarifying question instead of guessing. Never claim an escalation or action succeeded unless the tool result confirms it.`,
+    },
+    ...conversation,
+    { role: 'user' as const, content: message },
+  ] as Array<{ role: 'system' | 'user' | 'assistant'; content: string }>;
+}
+
+function normalizeToolParams(args: Record<string, unknown>) {
+  return Object.fromEntries(
+    Object.entries(args).map(([key, value]) => [key, typeof value === 'string' ? value : String(value)])
+  );
+}
+
+async function callGroqOrchestrator(role: UserRole, userId: string, message: string, history: ChatMessage[]) {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) return null;
+
+  const client = new Groq({ apiKey });
+  const tools = ROLE_TOOLS[role].map(toGroqToolDef) as any[];
+  const initialMessages = toGroqMessages(role, history, message) as any[];
+
+  const firstResponse = await client.chat.completions.create({
+    model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+    messages: initialMessages,
+    tools,
+    tool_choice: 'auto',
+    temperature: 0.2,
+    max_tokens: 500,
+  });
+
+  const firstChoice = firstResponse.choices[0];
+  const toolCalls = firstChoice?.message?.tool_calls ?? [];
+
+  if (!toolCalls.length) {
+    return firstChoice?.message?.content?.trim() || 'I can help with that.';
+  }
+
+  const selectedCall = toolCalls[0];
+  const toolName = selectedCall.function.name as ToolName;
+  const argumentsPayload = JSON.parse(selectedCall.function.arguments || '{}') as Record<string, unknown>;
+  const normalizedArgs = normalizeToolParams({ ...argumentsPayload, message });
+
+  const toolResult = await executeTool(role, userId, toolName, normalizedArgs);
+
+  if (!toolResult.ok) {
+    return toolResult.message ?? 'I could not complete that request.';
+  }
+
+  const followUpMessages: any[] = [
+    {
+      role: 'system' as const,
+      content: `${PERSONAS[role]} Use the tool result to answer the user. Never say an escalation or tool action succeeded unless the tool result confirms it. Keep the response calm, concise, and grounded only in the data the user is allowed to access.`,
+    },
+    ...initialMessages,
+    {
+      role: 'tool' as const,
+      tool_call_id: selectedCall.id,
+      name: toolName,
+      content: JSON.stringify(toolResult),
+    },
+  ];
+
+  const finalResponse = await client.chat.completions.create({
+    model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+    messages: followUpMessages,
+    temperature: 0.2,
+    max_tokens: 500,
+  });
+
+  return finalResponse.choices[0]?.message?.content?.trim() || 'I can help with that.';
 }
 
 export async function orchestrateChat({
@@ -318,13 +419,43 @@ export async function orchestrateChat({
   const sessionHistory: ChatMessage[] = history.length > 0 ? history : getConversationHistory(userId, sessionId);
   const nextHistory: ChatMessage[] = [...sessionHistory, { role: 'user', content: message, timestamp: new Date().toISOString() }];
 
-  const toolName: ToolName = detectIntent(role, message) as ToolName;
-  if (!ensureAllowed(role, toolName)) {
+  const groqReply = await callGroqOrchestrator(role, userId, message, sessionHistory);
+  if (groqReply) {
+    const responseHistory: ChatMessage[] = [...nextHistory, { role: 'assistant', content: groqReply, timestamp: new Date().toISOString() }];
+    saveConversationHistory(userId, sessionId, responseHistory);
     return {
       sessionId,
       requiresInput: false,
-      content: 'I can only help with the tools available to your role. Please ask about your own attendance, a class update, or a support request.',
-      history: nextHistory,
+      content: groqReply,
+      history: responseHistory,
+    };
+  }
+
+  const toolName: ToolName = detectIntent(role, message) as ToolName;
+
+  if (['student', 'parent'].includes(role) && toolName === 'requestEscalation' && /(mark|update|change|set)/.test(message.toLowerCase()) && /attendance/.test(message.toLowerCase())) {
+    const reply = role === 'student'
+      ? 'You can view your attendance, but you cannot mark attendance. Please ask for your attendance summary or contact a teacher for assistance.'
+      : 'You can view your linked child\'s attendance, but only a teacher can mark attendance. I can help with the attendance summary or a support request.';
+    const responseHistory: ChatMessage[] = [...nextHistory, { role: 'assistant', content: reply, timestamp: new Date().toISOString() }];
+    saveConversationHistory(userId, sessionId, responseHistory);
+    return {
+      sessionId,
+      requiresInput: false,
+      content: reply,
+      history: responseHistory,
+    };
+  }
+
+  if (!ensureAllowed(role, toolName)) {
+    const reply = 'I can only help with the tools available to your role. Please ask about your own attendance, a class update, or a support request.';
+    const responseHistory: ChatMessage[] = [...nextHistory, { role: 'assistant', content: reply, timestamp: new Date().toISOString() }];
+    saveConversationHistory(userId, sessionId, responseHistory);
+    return {
+      sessionId,
+      requiresInput: false,
+      content: reply,
+      history: responseHistory,
     };
   }
 
@@ -356,21 +487,20 @@ export async function orchestrateChat({
     const question = role === 'teacher'
       ? 'Which student would you like me to check?'
       : 'Which student should I review for you?';
-    const reply = `${PERSONAS[role]} ${question}`;
-    const responseHistory: ChatMessage[] = [...nextHistory, { role: 'assistant', content: reply, timestamp: new Date().toISOString() }];
+    const responseHistory: ChatMessage[] = [...nextHistory, { role: 'assistant', content: question, timestamp: new Date().toISOString() }];
     saveConversationHistory(userId, sessionId, responseHistory);
-    return { sessionId, requiresInput: true, content: reply, history: responseHistory };
+    return { sessionId, requiresInput: true, content: question, history: responseHistory };
   }
 
   if (toolName === 'markAttendance' && (!params.studentId || !params.date || !params.status)) {
-    const reply = `${PERSONAS[role]} I need the student, the date, and the status before I can mark attendance.`;
+    const reply = 'I need the student, the date, and the status before I can mark attendance.';
     const responseHistory: ChatMessage[] = [...nextHistory, { role: 'assistant', content: reply, timestamp: new Date().toISOString() }];
     saveConversationHistory(userId, sessionId, responseHistory);
     return { sessionId, requiresInput: true, content: reply, history: responseHistory };
   }
 
   if (toolName === 'requestEscalation' && (!params.reason || !params.reason.trim())) {
-    const reply = `${PERSONAS[role]} Please tell me the reason for the escalation and whether it should go to the teacher or management.`;
+    const reply = 'Please tell me the reason for the escalation and whether it should go to the teacher or management.';
     const responseHistory: ChatMessage[] = [...nextHistory, { role: 'assistant', content: reply, timestamp: new Date().toISOString() }];
     saveConversationHistory(userId, sessionId, responseHistory);
     return { sessionId, requiresInput: true, content: reply, history: responseHistory };
@@ -414,7 +544,7 @@ export async function orchestrateChat({
   return {
     sessionId,
     requiresInput: false,
-    content: `${PERSONAS[role]} ${reply}`,
+    content: reply,
     history: responseHistory,
   };
 }

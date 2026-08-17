@@ -22,6 +22,7 @@
   --gradient-parent: linear-gradient(135deg, #8b5cf6, #a78bfa);
   --gradient-teacher: linear-gradient(135deg, #06b6d4, #22d3ee);
   --gradient-principal: linear-gradient(135deg, #f59e0b, #fbbf24);
+  --gradient-button: linear-gradient(135deg, #6366f1, #8b5cf6);
 
   /* Text */
   --text-primary: #f1f5f9;
@@ -139,6 +140,11 @@ body {
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .animate-fade-in {
