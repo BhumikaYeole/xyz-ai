@@ -27,14 +27,14 @@ export default function StudentPortalPage() {
   }
 
   return (
-    <main data-role="student" style={{ minHeight: '100vh', padding: '2rem', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', width: '500px', height: '500px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.1), transparent 70%)', top: '-150px', right: '-100px', pointerEvents: 'none' }} />
+    <main data-role="student" style={{ minHeight: '100vh', padding: '0', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', width: '500px', height: '500px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.08), transparent 70%)', top: '-150px', right: '-100px', pointerEvents: 'none' }} />
 
-      {/* Header bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', position: 'relative', zIndex: 1 }}>
+      {/* Header bar - Fixed at top */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem', position: 'relative', zIndex: 10, borderBottom: '1px solid var(--border-subtle)', background: 'var(--bg-primary)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{ width: '40px', height: '40px', borderRadius: 'var(--radius-md)', background: 'var(--gradient-student)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <FiBook size={20} />
+            <FiBook size={20} color="white" />
           </div>
           <div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Student Portal</p>
@@ -44,8 +44,11 @@ export default function StudentPortalPage() {
         <button id="student-logout" onClick={handleLogout} className="btn-secondary" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>Sign Out</button>
       </div>
 
-      <div className="glass-card animate-fade-in" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem', position: 'relative', zIndex: 1, height: '700px', display: 'flex', flexDirection: 'column' }}>
-        <ChatInterface userRole="student" />
+      {/* Chat container - Fills remaining space */}
+      <div style={{ padding: '2rem', height: 'calc(100vh - 100px)', overflow: 'auto', position: 'relative', zIndex: 1 }}>
+        <div className="glass-card animate-fade-in" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem', position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <ChatInterface userRole="student" />
+        </div>
       </div>
     </main>
   );

@@ -1,12 +1,35 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { FiSend, FiPhone, FiAlertCircle, FiX, FiCheck } from 'react-icons/fi';
+import ReactMarkdown from 'react-markdown';
 import type { ChatMessage } from '@/lib/conversation-store';
 
 interface EscalationContext {
   type: 'teacher' | 'management';
   shown: boolean;
 }
+
+const MarkdownContent = ({ content }: { content: string }) => (
+  <ReactMarkdown
+    components={{
+      h1: ({ children }) => <h1 style={{ fontSize: '1.3rem', fontWeight: 700, marginTop: '0.75rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>{children}</h1>,
+      h2: ({ children }) => <h2 style={{ fontSize: '1.1rem', fontWeight: 700, marginTop: '0.6rem', marginBottom: '0.4rem', color: 'var(--text-primary)' }}>{children}</h2>,
+      h3: ({ children }) => <h3 style={{ fontSize: '1rem', fontWeight: 700, marginTop: '0.5rem', marginBottom: '0.3rem', color: 'var(--text-primary)' }}>{children}</h3>,
+      p: ({ children }) => <p style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>{children}</p>,
+      strong: ({ children }) => <strong style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{children}</strong>,
+      em: ({ children }) => <em style={{ fontStyle: 'italic', color: 'var(--text-secondary)' }}>{children}</em>,
+      ul: ({ children }) => <ul style={{ marginLeft: '1.25rem', marginBottom: '0.5rem', listStyleType: 'disc' }}>{children}</ul>,
+      ol: ({ children }) => <ol style={{ marginLeft: '1.25rem', marginBottom: '0.5rem', listStyleType: 'decimal' }}>{children}</ol>,
+      li: ({ children }) => <li style={{ marginBottom: '0.25rem', color: 'var(--text-secondary)' }}>{children}</li>,
+      code: ({ children }) => <code style={{ background: 'rgba(99,102,241,0.1)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem', fontFamily: 'monospace', fontSize: '0.85rem', color: '#818cf8' }}>{children}</code>,
+      pre: ({ children }) => <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', overflow: 'auto', marginBottom: '0.5rem' }}>{children}</pre>,
+      blockquote: ({ children }) => <blockquote style={{ borderLeft: '3px solid #818cf8', paddingLeft: '1rem', marginLeft: 0, color: 'var(--text-secondary)', fontStyle: 'italic' }}>{children}</blockquote>,
+      hr: () => <hr style={{ margin: '1rem 0', border: 'none', borderTop: '1px solid rgba(148,163,184,0.1)' }} />,
+    }}
+  >
+    {content}
+  </ReactMarkdown>
+);
 
 export default function ChatInterface({ userRole }: { userRole: string }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -172,7 +195,7 @@ export default function ChatInterface({ userRole }: { userRole: string }) {
                 lineHeight: 1.5,
               }}
             >
-              {msg.content}
+              {msg.role === 'assistant' ? <MarkdownContent content={msg.content} /> : msg.content}
             </div>
           </div>
         ))}

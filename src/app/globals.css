@@ -3,39 +3,43 @@
 /* ─── Design Tokens ──────────────────────────────────────────────────────── */
 
 :root {
-  /* Base palette */
-  --bg-primary: #0a0e1a;
-  --bg-secondary: #111827;
-  --bg-card: #1a2035;
-  --bg-input: #1e2742;
-  --bg-hover: #243052;
+  /* Base palette - Light theme with purple accent */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f7ff;
+  --bg-card: #f5f3ff;
+  --bg-input: #f0ecff;
+  --bg-hover: #ede9ff;
 
-  /* Accent colors - per role */
-  --accent-student: #6366f1;    /* Indigo */
+  /* Primary and Secondary */
+  --color-primary: #ffffff;
+  --color-secondary: #8b5cf6;
+
+  /* Accent colors - all purple-based */
+  --accent-student: #8b5cf6;    /* Purple */
   --accent-parent: #8b5cf6;     /* Purple */
-  --accent-teacher: #06b6d4;    /* Cyan */
-  --accent-principal: #f59e0b;  /* Amber */
-  --accent-default: #6366f1;
+  --accent-teacher: #8b5cf6;    /* Purple */
+  --accent-principal: #8b5cf6;  /* Purple */
+  --accent-default: #8b5cf6;
 
   /* Gradients */
-  --gradient-student: linear-gradient(135deg, #6366f1, #818cf8);
+  --gradient-student: linear-gradient(135deg, #8b5cf6, #a78bfa);
   --gradient-parent: linear-gradient(135deg, #8b5cf6, #a78bfa);
-  --gradient-teacher: linear-gradient(135deg, #06b6d4, #22d3ee);
-  --gradient-principal: linear-gradient(135deg, #f59e0b, #fbbf24);
-  --gradient-button: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --gradient-teacher: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  --gradient-principal: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  --gradient-button: linear-gradient(135deg, #8b5cf6, #a78bfa);
 
   /* Text */
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
 
   /* Borders */
-  --border-subtle: rgba(148, 163, 184, 0.1);
-  --border-accent: rgba(99, 102, 241, 0.3);
+  --border-subtle: rgba(139, 92, 246, 0.1);
+  --border-accent: rgba(139, 92, 246, 0.3);
 
   /* Shadows */
-  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.15);
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.15);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.05);
 
   /* Radius */
   --radius-sm: 8px;
@@ -60,7 +64,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--bg-hover) transparent;
+  scrollbar-color: var(--accent-default) transparent;
 }
 
 body {
@@ -73,7 +77,7 @@ body {
 /* ─── Utility Classes ────────────────────────────────────────────────────── */
 
 .glass-card {
-  background: rgba(26, 32, 53, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
@@ -194,7 +198,7 @@ body {
 
 .input-field:focus {
   border-color: var(--accent-default);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
 }
 
 .input-field::placeholder {
@@ -204,7 +208,7 @@ body {
 /* ─── Button Styles ──────────────────────────────────────────────────────── */
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-default), rgba(99, 102, 241, 0.8));
+  background: linear-gradient(135deg, var(--accent-default), rgba(139, 92, 246, 0.8));
   color: white;
   border: none;
   border-radius: var(--radius-md);
@@ -219,7 +223,7 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
 }
 
 .btn-primary:active {
