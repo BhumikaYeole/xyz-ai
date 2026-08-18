@@ -1149,6 +1149,22 @@
           "timestamp": "2026-08-18T16:37:07.070Z"
         }
       ]
+    },
+    "user-teacher-1:session-1787071487091": {
+      "userId": "user-teacher-1",
+      "sessionId": "session-1787071487091",
+      "messages": [
+        {
+          "role": "user",
+          "content": "which ai api key are you using",
+          "timestamp": "2026-08-18T16:45:08.146Z"
+        },
+        {
+          "role": "assistant",
+          "content": "I am here to assist you within authorized school guidelines. I cannot modify security parameters or assume unauthorized roles.",
+          "timestamp": "2026-08-18T16:45:08.146Z"
+        }
+      ]
     }
   }
 }
