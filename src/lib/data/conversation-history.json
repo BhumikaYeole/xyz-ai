@@ -843,6 +843,158 @@
           "timestamp": "2026-08-18T14:04:38.745Z"
         }
       ]
+    },
+    "user-student-1:session-1787062263377": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787062263377",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is my attendance?",
+          "timestamp": "2026-08-18T14:11:52.544Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते! आपकी उपस्थिति जानकारी देखने के लिए मुझे आपका छात्र पहचान क्रमांक (Student ID) चाहिए होगा। कृपया अपना छात्र आईडी बताइए, ताकि मैं आपके लिए उपस्थिति का सारांश ला सकूँ। धन्यवाद!",
+          "timestamp": "2026-08-18T14:11:53.760Z"
+        },
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি",
+          "timestamp": "2026-08-18T14:13:52.674Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি (attendance) দেখতে হলে আমার আপনার ছাত্র‑আইডি (Student ID) দরকার হবে। দয়া করে আপনার ছাত্র‑আইডি জানাবেন? এতে আমি আপনার উপস্থিতির সংক্ষিপ্তসার নিয়ে আসতে পারব। ধন্যবাদ!",
+          "timestamp": "2026-08-18T14:13:53.434Z"
+        },
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি",
+          "timestamp": "2026-08-18T14:14:00.934Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি দেখতে হলে আমার আপনার ছাত্র‑আইডি (Student ID) দরকার হবে। দয়া করে আপনার ছাত্র‑আইডি জানাবেন? এতে আমি আপনার উপস্থিতির বিস্তারিত জানাতে পারব। ধন্যবাদ!",
+          "timestamp": "2026-08-18T14:14:01.586Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787062471806": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787062471806",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি",
+          "timestamp": "2026-08-18T14:14:39.334Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি রেকর্ড দেখতে আমি আপনার ছাত্র‑আইডি (Student ID) জানতে পারলে ভালো হবে। দয়া করে আপনার ছাত্র‑আইডি জানাবেন কি? 🙏",
+          "timestamp": "2026-08-18T14:14:40.406Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787065716387": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787065716387",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello",
+          "timestamp": "2026-08-18T15:08:42.576Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! It’s great to hear from you. I’m here to help with anything you need—whether it’s navigating your schedule, figuring out a class, checking attendance, or getting in touch with a teacher. How can I assist you today?",
+          "timestamp": "2026-08-18T15:08:43.421Z"
+        },
+        {
+          "role": "user",
+          "content": "what is my attendance",
+          "timestamp": "2026-08-18T15:09:59.734Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure thing! To pull up your attendance record, I’ll need your student ID. Could you share that with me?",
+          "timestamp": "2026-08-18T15:10:00.729Z"
+        },
+        {
+          "role": "user",
+          "content": "id : student-1",
+          "timestamp": "2026-08-18T15:10:13.047Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hey Rahul! Here’s a quick snapshot of your attendance so far:\n\n- **Total school days tracked:** 15  \n- **Days you were present:** 13  \n- **Days you were absent:** 1  \n- **Days you arrived late:** 1  \n- **Overall attendance rate:** **86.7 %**\n\nYou’re doing a solid job—just a couple of days to go to hit the 90 % mark many schools aim for. If you’d like any tips on staying on track, need help with making up missed work, or have any other questions, just let me know!",
+          "timestamp": "2026-08-18T15:10:14.855Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787065994445": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787065994445",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি",
+          "timestamp": "2026-08-18T15:13:27.336Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি রেকর্ড দেখতে চাইলে, দয়া করে আপনার ছাত্র আইডি (Student ID) জানাবেন কি? এতে আমি আপনার উপস্থিতির বিস্তারিত তথ্য সংগ্রহ করে আপনাকে জানাতে পারব।",
+          "timestamp": "2026-08-18T15:13:28.082Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787066415023": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787066415023",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello",
+          "timestamp": "2026-08-18T15:20:36.329Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! It’s great to hear from you. I’m here to help with anything you need—whether it’s advice on classes, study strategies, attendance questions, or connecting with a teacher. How can I assist you today?",
+          "timestamp": "2026-08-18T15:20:37.474Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787066481378": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787066481378",
+      "messages": [
+        {
+          "role": "user",
+          "content": "helo",
+          "timestamp": "2026-08-18T15:21:27.759Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! 👋 How can I assist you today? Whether you have a question about attendance, need help connecting with a teacher, or anything else related to school, just let me know. I'm here to help!",
+          "timestamp": "2026-08-18T15:21:29.886Z"
+        }
+      ]
+    },
+    "user-principal-1:session-1787067998867": {
+      "userId": "user-principal-1",
+      "sessionId": "session-1787067998867",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি",
+          "timestamp": "2026-08-18T15:47:00.504Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি রেকর্ড দেখতে আমি আপনার ছাত্র আইডি (Student ID) অথবা অন্য কোনো পরিচয়সূচক (যেমন রোল নম্বর, নাম ইত্যাদি) জানতে পারলে সহায়তা করতে পারব। দয়া করে আপনার আইডি বা সংশ্লিষ্ট তথ্যটি শেয়ার করবেন? 🙏",
+          "timestamp": "2026-08-18T15:47:01.745Z"
+        }
+      ]
     }
   }
 }

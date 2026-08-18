@@ -23,12 +23,15 @@ function sanitizeTextForSpeech(text: string): string {
     .trim();
 }
 
+// Preferred male voice keywords across OS platforms
+const MALE_VOICE_HINTS = ['hemant', 'ravi', 'madhur', 'mohan', 'valluvar', 'david', 'george', 'guy', 'james', 'male', 'natural'];
+
 export function useVoice({ language, onTranscript }: UseVoiceOptions) {
   const [status, setStatus] = useState<VoiceStatus>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [isSupported, setIsSupported] = useState(true);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  
+
   const recognitionRef = useRef<any>(null);
   const isListeningRef = useRef(false);
 
@@ -42,7 +45,9 @@ export function useVoice({ language, onTranscript }: UseVoiceOptions) {
     const updateVoices = () => {
       if (window.speechSynthesis) {
         const available = window.speechSynthesis.getVoices();
-        setVoices(available);
+        if (available && available.length > 0) {
+          setVoices(available);
+        }
       }
     };
 
@@ -69,13 +74,14 @@ export function useVoice({ language, onTranscript }: UseVoiceOptions) {
     }
 
     try {
-      // Cancel any ongoing speaking before listening
       if (window.speechSynthesis) {
         window.speechSynthesis.cancel();
       }
 
       if (recognitionRef.current) {
-        try { recognitionRef.current.abort(); } catch {}
+        try {
+          recognitionRef.current.abort();
+        } catch {}
       }
 
       const recognition = new SpeechRecognitionAPI();
@@ -135,54 +141,69 @@ export function useVoice({ language, onTranscript }: UseVoiceOptions) {
     setStatus('idle');
   }, []);
 
-  const speak = useCallback((text: string, onStart?: () => void, onEnd?: () => void) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+  const speak = useCallback(
+    (text: string, onStart?: () => void, onEnd?: () => void) => {
+      if (typeof window === 'undefined' || !window.speechSynthesis) return;
 
-    window.speechSynthesis.cancel();
+      window.speechSynthesis.cancel();
 
-    const cleanText = sanitizeTextForSpeech(text);
-    if (!cleanText) return;
+      const cleanText = sanitizeTextForSpeech(text);
+      if (!cleanText) return;
 
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    const targetLangCode = getSpeechCode(language);
-    utterance.lang = targetLangCode;
-    utterance.rate = 0.96; // Human-like conversational pace
-    utterance.pitch = 1.02; // Warm tone
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      const targetLangCode = getSpeechCode(language);
+      utterance.lang = targetLangCode;
+      utterance.rate = 0.95; // Natural human male speech pace
+      utterance.pitch = 0.92; // Warm male pitch
 
-    // Match best voice for current language
-    const currentVoices = voices.length > 0 ? voices : window.speechSynthesis.getVoices();
-    if (currentVoices.length > 0) {
-      const primaryPrefix = language.toLowerCase();
-      const exactMatch = currentVoices.find((v) => v.lang.toLowerCase() === targetLangCode.toLowerCase());
-      const prefixMatch = currentVoices.find((v) => v.lang.toLowerCase().startsWith(primaryPrefix));
-      const naturalVoice = currentVoices.find((v) => v.lang.toLowerCase().startsWith(primaryPrefix) && v.name.toLowerCase().includes('natural'));
+      const currentVoices = voices.length > 0 ? voices : window.speechSynthesis.getVoices();
+      if (currentVoices.length > 0) {
+        const langPrefix = language.toLowerCase();
+        
+        // Find matching voices for target language
+        const langMatchingVoices = currentVoices.filter(
+          (v) =>
+            v.lang.toLowerCase() === targetLangCode.toLowerCase() ||
+            v.lang.toLowerCase().replace('_', '-').startsWith(langPrefix) ||
+            v.lang.toLowerCase().startsWith(langPrefix)
+        );
 
-      if (naturalVoice) {
-        utterance.voice = naturalVoice;
-      } else if (exactMatch) {
-        utterance.voice = exactMatch;
-      } else if (prefixMatch) {
-        utterance.voice = prefixMatch;
+        if (langMatchingVoices.length > 0) {
+          // Look for male voice specifically in matching language
+          const maleVoice = langMatchingVoices.find((v) =>
+            MALE_VOICE_HINTS.some((hint) => v.name.toLowerCase().includes(hint))
+          );
+          utterance.voice = maleVoice || langMatchingVoices[0];
+        } else {
+          // Fallback to any general male voice if language-specific voice not installed
+          const generalMaleVoice = currentVoices.find((v) =>
+            MALE_VOICE_HINTS.some((hint) => v.name.toLowerCase().includes(hint))
+          );
+          if (generalMaleVoice) {
+            utterance.voice = generalMaleVoice;
+          }
+        }
       }
-    }
 
-    utterance.onstart = () => {
+      utterance.onstart = () => {
+        setStatus('speaking');
+        onStart?.();
+      };
+
+      utterance.onend = () => {
+        setStatus('idle');
+        onEnd?.();
+      };
+
+      utterance.onerror = () => {
+        setStatus('idle');
+      };
+
       setStatus('speaking');
-      onStart?.();
-    };
-
-    utterance.onend = () => {
-      setStatus('idle');
-      onEnd?.();
-    };
-
-    utterance.onerror = () => {
-      setStatus('idle');
-    };
-
-    setStatus('speaking');
-    window.speechSynthesis.speak(utterance);
-  }, [language, voices]);
+      window.speechSynthesis.speak(utterance);
+    },
+    [language, voices]
+  );
 
   const stopSpeaking = useCallback(() => {
     if (typeof window !== 'undefined' && window.speechSynthesis) {

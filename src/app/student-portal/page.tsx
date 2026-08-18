@@ -21,8 +21,8 @@ export default function StudentPortalPage() {
   return (
     <div data-role="student" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar language={language} onLanguageChange={setLanguage} />
-      <div className="page-content" style={{ flex: 1, padding: '1.5rem', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-        <div className="card" style={{ flex: 1, padding: '1.5rem', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <div className="page-content portal-page-container" style={{ flex: 1, padding: '1.25rem', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+        <div className="card portal-card-container" style={{ flex: 1, padding: '1.25rem', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
           <ChatInterface userRole="student" language={language} />
         </div>
       </div>

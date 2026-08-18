@@ -90,7 +90,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1.75rem;
   z-index: 100;
 }
 
@@ -127,7 +127,7 @@ body {
   color: var(--text-on-accent);
   border: none;
   border-radius: var(--radius-md);
-  padding: 10px 22px;
+  padding: 10px 20px;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -135,6 +135,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  white-space: nowrap;
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -157,7 +158,7 @@ body {
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 8px 18px;
+  padding: 8px 16px;
   font-weight: 500;
   font-size: 0.875rem;
   cursor: pointer;
@@ -165,6 +166,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  white-space: nowrap;
 }
 
 .btn-secondary:hover:not(:disabled) {
@@ -339,7 +341,7 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   color: var(--text-primary);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   padding: 5px 8px;
   outline: none;
   cursor: pointer;
@@ -369,4 +371,41 @@ body {
 
 .mic-recording {
   animation: micPulse 1s ease-out infinite;
+}
+
+/* ── Responsive Layout Rules ── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .chat-layout-wrapper {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .chat-avatar-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    padding-right: 0 !important;
+    padding-bottom: 0.75rem !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .chat-avatar-sidebar .avatar-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .portal-page-container {
+    padding: 0.75rem !important;
+  }
+
+  .portal-card-container {
+    padding: 1rem !important;
+  }
 }

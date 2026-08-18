@@ -5,22 +5,22 @@ import ThreeAvatar from './ThreeAvatar';
 
 const ROLE_CONFIG: Record<string, { label: string; greeting: string; title: string }> = {
   student: {
-    label: 'Mentor AI',
+    label: 'XYZ AI',
     title: 'Academic Assistant',
     greeting: 'Hi there! I am here to help you check your attendance and guide your studies.',
   },
   parent: {
-    label: 'Family AI',
+    label: 'XYZ AI',
     title: 'Parent Support Partner',
     greeting: 'Hello! Ask me anytime about your child’s attendance or request teacher callbacks.',
   },
   teacher: {
-    label: 'Staff AI',
+    label: 'XYZ AI',
     title: 'Teaching Assistant',
     greeting: 'Welcome! I can help you record class attendance and manage student rosters.',
   },
   principal: {
-    label: 'Executive AI',
+    label: 'XYZ AI',
     title: 'Management Assistant',
     greeting: 'Good day. I provide school-wide analytics and verified institutional data.',
   },
@@ -139,10 +139,10 @@ export default function Avatar({ role, voiceStatus }: AvatarProps) {
           {isListening
             ? 'Listening to your voice...'
             : isTalking
-            ? 'Responding with 3D Lip-Sync...'
-            : voiceStatus === 'processing'
-            ? 'Analyzing request...'
-            : config.greeting}
+              ? 'Responding with 3D Lip-Sync...'
+              : voiceStatus === 'processing'
+                ? 'Analyzing request...'
+                : config.greeting}
         </p>
       </div>
 

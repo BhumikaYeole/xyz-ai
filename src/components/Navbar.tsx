@@ -34,37 +34,85 @@ export default function Navbar({ language, onLanguageChange }: NavbarProps) {
 
   if (!user) return null;
 
-  const Icon = ROLE_ICONS[user.role];
+  const Icon = ROLE_ICONS[user.role] || FiUser;
 
   return (
     <nav className="navbar">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <div style={{ width: '36px', height: '36px', borderRadius: 'var(--radius-md)', background: 'var(--accent-default)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Icon size={18} color="white" />
+      {/* Left: Role Identity */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', minWidth: 0 }}>
+        <div
+          style={{
+            width: '50px',
+            height: '50px',
+            borderRadius: 'var(--radius-md)',
+            background: 'var(--accent-default)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+          }}
+        >
+          <Icon size={17} color="white" />
         </div>
-        <div>
-          <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1 }}>{PORTAL_LABELS[user.role]}</p>
-          <p style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.2 }}>{user.name}</p>
+        <div style={{ minWidth: 0, overflow: 'hidden' }}>
+          <p
+            style={{
+              fontSize: '0.68rem',
+              color: 'var(--text-muted)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+            }}
+          >
+            {PORTAL_LABELS[user.role]}
+          </p>
+          <p
+            style={{
+              fontSize: '0.88rem',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              lineHeight: 1.2,
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+            }}
+          >
+            {user.name}
+          </p>
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <FiGlobe size={14} color="var(--text-muted)" />
+      {/* Right: Language Selector & Sign Out */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <FiGlobe size={14} color="var(--accent-default)" />
           <select
             className="lang-select"
             value={language}
             onChange={(e) => onLanguageChange(e.target.value)}
             aria-label="Select language"
+            style={{ maxWidth: '115px' }}
           >
             {LANGUAGES.map((l) => (
-              <option key={l.code} value={l.code}>{l.nativeName}</option>
+              <option key={l.code} value={l.code}>
+                {l.nativeName}
+              </option>
             ))}
           </select>
         </div>
 
-        <button id="navbar-logout" onClick={handleLogout} className="btn-secondary" style={{ padding: '6px 14px', fontSize: '0.8rem' }}>
-          <FiLogOut size={14} /> Sign Out
+        <button
+          id="navbar-logout"
+          onClick={handleLogout}
+          className="btn-secondary"
+          style={{ padding: '6px 12px', fontSize: '0.78rem' }}
+          title="Sign out of current portal"
+        >
+          <FiLogOut size={13} />
+          <span className="hidden sm:inline">Sign Out</span>
         </button>
       </div>
     </nav>

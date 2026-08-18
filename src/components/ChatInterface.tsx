@@ -175,9 +175,10 @@ export default function ChatInterface({ userRole, language }: ChatInterfaceProps
   const isMicActive = voice.status === 'listening';
 
   return (
-    <div style={{ display: 'flex', height: '100%', gap: '1.25rem', minHeight: 0, width: '100%' }}>
+    <div className="chat-layout-wrapper" style={{ display: 'flex', height: '100%', gap: '1.25rem', minHeight: 0, width: '100%' }}>
       {/* 3D Avatar Column */}
       <div
+        className="chat-avatar-sidebar"
         style={{
           width: '180px',
           flexShrink: 0,
@@ -222,11 +223,11 @@ export default function ChatInterface({ userRole, language }: ChatInterfaceProps
         {/* Messages Scroll Area */}
         <div className="chat-scroll" style={{ flex: 1, overflowY: 'auto', paddingRight: '0.5rem', marginBottom: '0.75rem' }}>
           {messages.length === 0 && (
-            <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '3rem 1rem' }}>
+            <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 'clamp(1.5rem, 4vw, 3rem) 1rem' }}>
               <div
                 style={{
-                  width: '48px',
-                  height: '48px',
+                  width: '44px',
+                  height: '44px',
                   borderRadius: '50%',
                   background: 'var(--bg-card)',
                   display: 'flex',
@@ -236,7 +237,7 @@ export default function ChatInterface({ userRole, language }: ChatInterfaceProps
                   border: '1px solid var(--border-subtle)',
                 }}
               >
-                <FiInfo size={22} color="var(--accent-default)" />
+                <FiInfo size={20} color="var(--accent-default)" />
               </div>
               <p style={{ fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
                 How can I assist you today?
@@ -259,7 +260,7 @@ export default function ChatInterface({ userRole, language }: ChatInterfaceProps
               <div
                 className={msg.role === 'user' ? 'chat-bubble-user' : 'chat-bubble-ai'}
                 style={{
-                  maxWidth: '78%',
+                  maxWidth: '85%',
                   padding: '0.75rem 1rem',
                   fontSize: '0.9rem',
                   lineHeight: 1.5,
@@ -443,9 +444,10 @@ export default function ChatInterface({ userRole, language }: ChatInterfaceProps
             type="submit"
             disabled={loading || !input.trim()}
             className="btn-primary"
-            style={{ flexShrink: 0, height: '42px', padding: '0 18px' }}
+            style={{ flexShrink: 0, height: '42px', padding: '0 clamp(12px, 2vw, 18px)' }}
           >
-            <FiSend size={15} /> Send
+            <FiSend size={15} />
+            <span className="hidden sm:inline">Send</span>
           </button>
         </form>
       </div>
