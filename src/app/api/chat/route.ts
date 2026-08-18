@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json();
-  const { message, sessionId } = body;
+  const { message, sessionId, language = 'en' } = body;
 
   if (!message || typeof message !== 'string') {
     return Response.json({ success: false, error: 'Message is required.' }, { status: 400 });
@@ -19,6 +19,7 @@ export async function POST(request: Request) {
     role: payload.role,
     sessionId,
     message,
+    language,
   });
 
   return Response.json({

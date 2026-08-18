@@ -607,6 +607,242 @@
           "timestamp": "2026-08-18T13:09:18.299Z"
         }
       ]
+    },
+    "user-teacher-1:session-1787059674742": {
+      "userId": "user-teacher-1",
+      "sessionId": "session-1787059674742",
+      "messages": [
+        {
+          "role": "user",
+          "content": "राहुल की अटेंडेंस क्या है?",
+          "timestamp": "2026-08-18T13:29:06.539Z"
+        },
+        {
+          "role": "assistant",
+          "content": "क्या आप कृपया राहुल का छात्र‑आईडी (Student ID) बता सकते हैं? इससे मैं उसकी उपस्थिति जानकारी देख सकूँगा।",
+          "timestamp": "2026-08-18T13:29:07.327Z"
+        },
+        {
+          "role": "user",
+          "content": "राहुल की अटेंडेंस क्या है?",
+          "timestamp": "2026-08-18T13:31:37.658Z"
+        },
+        {
+          "role": "assistant",
+          "content": "कृपया राहुल का छात्र‑आईडी (Student ID) बताइए, ताकि मैं उसकी अटेंडेंस देख सकूँ।",
+          "timestamp": "2026-08-18T13:31:38.639Z"
+        },
+        {
+          "role": "user",
+          "content": "what is rahul's attendance",
+          "timestamp": "2026-08-18T13:31:59.546Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Could you please provide Rahul’s student ID? Once I have that, I can retrieve his attendance record for you.",
+          "timestamp": "2026-08-18T13:32:00.243Z"
+        },
+        {
+          "role": "user",
+          "content": "student-1",
+          "timestamp": "2026-08-18T13:34:40.113Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Here’s Rahul Sharma’s attendance summary:\n\n- **Total school days:** 14  \n- **Days present:** 13  \n- **Days absent:** 0  \n- **Days late:** 1  \n- **Attendance percentage:** **92.9 %**  \n\nLet me know if you need any additional details!",
+          "timestamp": "2026-08-18T13:34:41.475Z"
+        },
+        {
+          "role": "user",
+          "content": "update the attendance and days absent to 1",
+          "timestamp": "2026-08-18T13:35:31.073Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure, I can mark a day as absent for Rahul. Could you let me know the specific date (in YYYY‑MM‑DD format) that should be recorded as absent?",
+          "timestamp": "2026-08-18T13:35:32.104Z"
+        },
+        {
+          "role": "user",
+          "content": "2026-01-25",
+          "timestamp": "2026-08-18T13:35:46.593Z"
+        },
+        {
+          "role": "assistant",
+          "content": "The attendance for **Rahul Sharma (student‑1)** has been updated:\n\n- **Date marked absent:** 2026‑01‑25  \n- **Total school days:** 14  \n- **Days present:** 12  \n- **Days absent:** 1  \n- **Days late:** 1  \n- **Attendance percentage:** **85.7 %**\n\nLet me know if you need any further changes or additional information.",
+          "timestamp": "2026-08-18T13:35:49.850Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787060162201": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787060162201",
+      "messages": [
+        {
+          "role": "user",
+          "content": "what is mmy attendance",
+          "timestamp": "2026-08-18T13:36:11.839Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure, I can look up your attendance. Could you please provide your student ID?",
+          "timestamp": "2026-08-18T13:36:12.521Z"
+        },
+        {
+          "role": "user",
+          "content": "student-1",
+          "timestamp": "2026-08-18T13:36:17.576Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Here’s your attendance summary for the current period:\n\n- **Student:** Rahul Sharma (ID: student-1)  \n- **Total days:** 15  \n- **Days present:** 13  \n- **Days absent:** 1  \n- **Days late:** 1  \n- **Attendance percentage:** **86.7 %**\n\nLet me know if you need any additional details!",
+          "timestamp": "2026-08-18T13:36:18.970Z"
+        },
+        {
+          "role": "user",
+          "content": "student-1",
+          "timestamp": "2026-08-18T13:36:59.361Z"
+        },
+        {
+          "role": "assistant",
+          "content": "I’ve already shared the overall attendance summary for **student‑1**. Would you like to see a detailed day‑by‑day breakdown, the attendance record for a different date range, or any other specific information?",
+          "timestamp": "2026-08-18T13:37:00.422Z"
+        },
+        {
+          "role": "user",
+          "content": "दोबारा",
+          "timestamp": "2026-08-18T13:37:23.780Z"
+        },
+        {
+          "role": "assistant",
+          "content": "ज़रूर, यहाँ **student‑1** (राहुल शर्मा) की उपस्थिति का सारांश फिर से दिया गया है:\n\n- **कुल दिन:** 15  \n- **हाज़िर (Present):** 13 दिन  \n- **गैरहाज़िर (Absent):** 1 दिन  \n- **देर से आया (Late):** 1 दिन  \n- **उपस्थिति प्रतिशत:** **86.7 %**\n\nअगर आप विस्तृत दिन‑प्रतिदिन की सूची या किसी विशेष अवधि की जानकारी चाहते हैं, तो बताइए!",
+          "timestamp": "2026-08-18T13:37:24.701Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787061145243": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787061145243",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is my attendance?",
+          "timestamp": "2026-08-18T13:53:00.109Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure thing! I can pull up your attendance record for you. Could you let me know your student ID, please?",
+          "timestamp": "2026-08-18T13:53:01.109Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787061239391": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787061239391",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello",
+          "timestamp": "2026-08-18T13:54:06.133Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hey there! 👋 How’s your day going? I’m here to help with anything you need—whether it’s homework, study tips, or just a quick chat about school life. Let me know what’s on your mind!",
+          "timestamp": "2026-08-18T13:54:06.842Z"
+        },
+        {
+          "role": "user",
+          "content": "what's my attendance id : student-1",
+          "timestamp": "2026-08-18T13:54:44.303Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hi Rahul! 🌟 Here’s a quick snapshot of your attendance so far:\n\n- **Student ID:** student-1  \n- **Name:** Rahul Sharma  \n- **Total school days counted:** 15  \n- **Days present:** 13  \n- **Days absent:** 1  \n- **Days late:** 1  \n- **Attendance percentage:** **86.7 %**\n\nYou’re doing a solid job—just a couple of days to go to hit that 90 % mark! If you’d like any tips on staying on time or making the most of the days you’re in class, just let me know. Keep up the great work! 🚀",
+          "timestamp": "2026-08-18T13:54:45.709Z"
+        },
+        {
+          "role": "user",
+          "content": "राहुल की अटेंडेंस क्या है?",
+          "timestamp": "2026-08-18T13:56:07.779Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते राहुल! 🌟 तुम्हारी उपस्थिति (अटेंडेंस) का सारांश इस प्रकार है:\n\n- **कुल दिन:** 15  \n- **हाज़िर दिन:** 13  \n- **ग़ैरहाज़िर (अनुपस्थित) दिन:** 1  \n- **लेट (देर से) आने वाले दिन:** 1  \n- **उपस्थिति प्रतिशत:** **86.7 %**\n\nतुमने अब तक बहुत अच्छा किया है! बस थोड़ा और नियमित रहने की कोशिश करो, तो 90 % से ऊपर भी पहुँच सकते हो। अगर टाइम मैनेजमेंट या क्लास में सक्रिय रहने के लिए कोई टिप चाहिए, तो बेझिझक पूछो। तुम कर सकते हो! 🚀",
+          "timestamp": "2026-08-18T13:56:10.517Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787061576614": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787061576614",
+      "messages": [
+        {
+          "role": "user",
+          "content": "what is my attendance",
+          "timestamp": "2026-08-18T14:01:04.383Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure thing! I can pull up your attendance summary, but I’ll need your student ID to look up the right record. Could you share that with me?",
+          "timestamp": "2026-08-18T14:01:05.065Z"
+        },
+        {
+          "role": "user",
+          "content": "student id is student hyphen 1",
+          "timestamp": "2026-08-18T14:01:22.961Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hey Rahul! 🌟 Here’s a quick snapshot of your attendance so far:\n\n- **Total school days:** 15  \n- **Days present:** 13  \n- **Days absent:** 1  \n- **Days you arrived late:** 1  \n- **Attendance percentage:** **86.7 %**\n\nYou’re doing a solid job—just a couple of days to go to hit that 90 % mark! Keep up the good work, and if you ever need tips on staying on time or anything else, just let me know. I'm here to help!",
+          "timestamp": "2026-08-18T14:01:24.924Z"
+        },
+        {
+          "role": "user",
+          "content": "update my attendance from 86.7 to 92 %",
+          "timestamp": "2026-08-18T14:01:43.309Z"
+        },
+        {
+          "role": "assistant",
+          "content": "I’m glad you’re aiming for an even higher attendance rate—that’s a great goal! 😊 However, I don’t have the ability to directly change attendance records. The best way to get your attendance updated is to reach out to the school’s attendance office or a counselor.\n\nIf you’d like, I can submit a support request on your behalf so the appropriate staff can review and adjust your record if there’s a valid reason (e.g., a missed entry, a documented excuse, etc.). Just let me know, and I’ll take care of that for you!",
+          "timestamp": "2026-08-18T14:01:45.249Z"
+        }
+      ]
+    },
+    "user-parent-1:session-1787061747628": {
+      "userId": "user-parent-1",
+      "sessionId": "session-1787061747628",
+      "messages": [
+        {
+          "role": "user",
+          "content": "राहुलची उपस्थिती किती",
+          "timestamp": "2026-08-18T14:02:39.113Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्कार! Rahul Sharma ची उपस्थिती 86.7% आहे. नोंदवलेल्या एकूण 15 दिवसांपैकी, 13 दिवस उपस्थित, 1 दिवस अनुपस्थित आणि 1 दिवस उशिरा आले आहेत.",
+          "timestamp": "2026-08-18T14:02:40.534Z"
+        },
+        {
+          "role": "user",
+          "content": "राहुलची उपस्थिती 86 पासून 90 करा",
+          "timestamp": "2026-08-18T14:04:33.606Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्कार! मी समजते की तुम्हाला राहुलची उपस्थिती ९०% पर्यंत वाढवायची आहे—हे खूपच चांगले उद्दिष्ट आहे. परंतु मी शाळेच्या नोंदींमध्ये थेट बदल किंवा सुधारणा करू शकत नाही. \n\nमी तुम्हाला काही उपयुक्त टिप्स देऊ शकते ज्यामुळे राहुलची उपस्थिती नैसर्गिकरित्या वाढेल:\n\n1. **दैनंदिन रूटीन तयार करा** – सकाळी एकाच वेळी उठणे, नाश्ता करणे आणि शाळेत जाण्याची तयारी करणे यामुळे उशिरा येण्याची शक्यता कमी होते.  \n2. **शाळेचे महत्त्व समजवा** – वर्गातील शिकवणुकीचा आणि मित्रांच्या संवादाचा फायदा त्याला समजावून द्या, ज्यामुळे तो उत्सुकतेने येईल.  \n3. **अभ्यासाची योजना** – गृहपाठ आणि इतर कामे आधीच पूर्ण करणे, त्यामुळे शाळेत जाण्याचा ताण कमी होईल.  \n4. **सकारात्मक बक्षीस** – प्रत्येक आठवड्याच्या शेवटी उपस्थिती लक्ष्य पूर्ण झाल्यास लहान बक्षीस (जसे आवडती स्नॅक किंवा बाहेरचा वेळ) देणे प्रेरणा वाढवू शकते.  \n5. **शाळेच्या समर्थन प्रणालीचा वापर** – जर कोणतेही आरोग्य किंवा परिवहनाचे अडथळे असतील तर वर्ग शिक्षक किंवा वर्गसमन्वयकाशी बोलून मदत घ्या.  \n\nजर तुम्हाला शिक्षकांशी किंवा व्यवस्थापनाशी अधिक चर्चा करायची असेल, तर मी त्यांच्यासाठी एक समर्थन कॉल किंवा भेटीची विनंती तयार करू शकते. कृपया कळवा!",
+          "timestamp": "2026-08-18T14:04:35.201Z"
+        },
+        {
+          "role": "user",
+          "content": "रिसेट",
+          "timestamp": "2026-08-18T14:04:36.949Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्कार! 🙏\n\nआपण \"रिसेट\" म्हणत आहात—कृपया थोडे अधिक स्पष्ट कराल का? \n\n- आपण राहुलची उपस्थितीची नोंद पुन्हा मूळ स्थितीत (जसे आधी होती) परतवू इच्छिता?  \n- किंवा एखादा इतर सेटिंग/विनंती रीसेट करायची आहे?  \n\nकृपया आपली अचूक गरज सांगा, मी त्यानुसार मदत करेन. धन्यवाद!",
+          "timestamp": "2026-08-18T14:04:38.745Z"
+        }
+      ]
     }
   }
 }
