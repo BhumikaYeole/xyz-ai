@@ -1,6 +1,6 @@
-# XYZ AI — Human-Like School Assistant
+# XYZ AI · Human-Like School Assistant
 
-XYZ AI is a standalone Applied AI solution built for school ecosystems. It interacts with **Students**, **Parents**, **Teachers**, and **School Leadership / Principals** through **Chat**, **Voice (Speech-to-Text & Text-to-Speech)**, and an **Interactive 3D Male Avatar with Real-Time Lip-Sync**.
+XYZ AI is a standalone Applied AI solution built for school ecosystems. It interacts with **Students**, **Parents**, **Teachers**, and **School Leadership / Principals** through **Chat**, **Voice (Speech-to-Text & Text-to-Speech)**, and an **Interactive 3D Male Avatar with Lip-Sync**.
 
 ---
 
@@ -71,7 +71,7 @@ You can use the **Quick Demo Login** buttons on `/login` or enter the credential
 
 ### 2. Clone and Install Dependencies
 ```bash
-git clone https://github.com/your-username/xyz-ai.git
+git clone https://github.com/BhumikaYeole/xyz-ai.git
 cd xyz-ai
 npm install
 ```
@@ -96,13 +96,3 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 npm run build
 npm run start
 ```
-
----
-
-## Free-Tier Deployment (Vercel)
-
-1. Push your repository to **GitHub**.
-2. Sign in to [Vercel](https://vercel.com) and click **"Add New Project"**.
-3. Select your `xyz-ai` repository.
-4. Add environment variables in project settings (`JWT_SECRET`, `GROQ_API_KEY`, `GROQ_MODEL`).
-5. Click **Deploy**. Vercel will build and assign a live `*.vercel.app` URL.
