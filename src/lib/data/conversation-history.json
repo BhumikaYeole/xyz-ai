@@ -995,6 +995,160 @@
           "timestamp": "2026-08-18T15:47:01.745Z"
         }
       ]
+    },
+    "user-parent-1:session-1787068460143": {
+      "userId": "user-parent-1",
+      "sessionId": "session-1787068460143",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello",
+          "timestamp": "2026-08-18T15:54:34.794Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! It’s great to hear from you. I’m here to help with anything you need regarding your child’s school experience—whether it’s attendance information, a question for a teacher, or any other support. Could you let me know your child’s name (or student ID if you have it) and what you’d like assistance with today?",
+          "timestamp": "2026-08-18T15:54:35.798Z"
+        },
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T15:55:00.389Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते! आपसे बात करके खुशी हुई। मैं आपके बच्चे की स्कूल‑से संबंधित किसी भी जानकारी या सहायता में मदद करने के लिए यहाँ हूँ—जैसे उपस्थिति विवरण, शिक्षक से कोई प्रश्न, या अन्य कोई समर्थन। कृपया अपने बच्चे का नाम या छात्र‑आईडी बताइए, और आप किस प्रकार की मदद चाहते हैं?",
+          "timestamp": "2026-08-18T15:55:01.255Z"
+        },
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T15:55:11.061Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते! आपका स्वागत है। मैं आपकी कैसे मदद कर सकता हूँ? कृपया अपने बच्चे का नाम या छात्र‑आईडी बताइए, और आप किस प्रकार की जानकारी या सहायता चाहते हैं—जैसे उपस्थिति रिपोर्ट, शिक्षक से संपर्क, या कोई अन्य प्रश्न। मैं यहाँ हूँ, आपका सहयोग करने के लिए तैयार।",
+          "timestamp": "2026-08-18T15:55:12.039Z"
+        },
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T15:55:28.168Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते! आपका फिर से स्वागत है। मैं आपकी सहायता के लिए यहाँ हूँ—चाहे आपके बच्चे की उपस्थिति की जानकारी चाहिए, शिक्षक से बात करनी है, या कोई अन्य सवाल है। क्या आप कृपया अपने बच्चे का नाम या छात्र‑आईडी साझा कर सकते हैं, और बताएं कि आप किस प्रकार की मदद चाहते हैं? इससे मैं जल्दी और सही जानकारी प्रदान कर पाऊँगा। धन्यवाद!",
+          "timestamp": "2026-08-18T15:55:29.241Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787068540747": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787068540747",
+      "messages": [
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T15:55:44.485Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! 👋 It's great to hear from you. How can I assist you today—perhaps with class planning, attendance info, or anything else on your academic journey? Feel free to let me know!",
+          "timestamp": "2026-08-18T15:55:45.420Z"
+        },
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T15:55:53.892Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते! आपका स्वागत है। मैं आपकी पढ़ाई, कक्षा‑समय‑सारणी, उपस्थिति या किसी भी शैक्षणिक विषय में मदद करने के लिए यहाँ हूँ। आज मैं आपकी किस प्रकार सहायता कर सकता हूँ? कृपया बताइए।",
+          "timestamp": "2026-08-18T15:55:54.861Z"
+        },
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T15:56:06.657Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते! आपका फिर से स्वागत है। मैं आपके शैक्षणिक योजना, उपस्थिति, समय‑सारणी या किसी भी सवाल में मदद करने के लिए यहाँ हूँ। आज आप किस चीज़ में सहायता चाहते हैं? बताइए, मैं यथासंभव मदद करूँगा।",
+          "timestamp": "2026-08-18T15:56:07.639Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787068914881": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787068914881",
+      "messages": [
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T16:05:42.497Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्ते! मैं आपका स्कूल सलाहकार हूँ। आज मैं आपकी किस प्रकार मदद कर सकता हूँ? पढ़ाई, उपस्थिति, समय‑सारणी या किसी अन्य विषय में कुछ पूछना है तो बेझिझक बताइए। 😊",
+          "timestamp": "2026-08-18T16:05:43.464Z"
+        },
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি",
+          "timestamp": "2026-08-18T16:06:24.630Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি সংক্রান্ত তথ্য দেখতে হলে আমাকে আপনার ছাত্র‑আইডি (Student ID) জানাতে হবে। দয়া করে আপনার আইডি নম্বরটি শেয়ার করবেন? 🙏",
+          "timestamp": "2026-08-18T16:06:25.306Z"
+        }
+      ]
+    },
+    "user-student-1:session-1787070920846": {
+      "userId": "user-student-1",
+      "sessionId": "session-1787070920846",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি কত?",
+          "timestamp": "2026-08-18T16:36:13.898Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure thing! Could you please share your student ID (or the ID you use for school records) so I can look up your attendance for you?",
+          "timestamp": "2026-08-18T16:36:14.657Z"
+        },
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি কত?",
+          "timestamp": "2026-08-18T16:36:26.180Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি দেখতে আমি আপনার ছাত্র আইডি (Student ID) দরকার হবে। দয়া করে আপনার আইডিটি শেয়ার করবেন? ধন্যবাদ!",
+          "timestamp": "2026-08-18T16:36:26.865Z"
+        },
+        {
+          "role": "user",
+          "content": "আমার উপস্থিতি কত?",
+          "timestamp": "2026-08-18T16:36:36.014Z"
+        },
+        {
+          "role": "assistant",
+          "content": "আপনার উপস্থিতি দেখতে আমার আপনার ছাত্র আইডি (Student ID) দরকার হবে। দয়া করে আপনার আইডি শেয়ার করবেন? ধন্যবাদ!",
+          "timestamp": "2026-08-18T16:36:36.866Z"
+        },
+        {
+          "role": "user",
+          "content": "नमस्ते",
+          "timestamp": "2026-08-18T16:37:06.213Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नमस्कार! तुमची उपस्थिती तपासण्यासाठी मला तुमचा विद्यार्थी आयडी (Student ID) आवश्यक आहे. कृपया तो द्याल का? धन्यवाद!",
+          "timestamp": "2026-08-18T16:37:07.070Z"
+        }
+      ]
     }
   }
 }

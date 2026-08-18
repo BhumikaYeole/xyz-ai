@@ -23,7 +23,6 @@ function sanitizeTextForSpeech(text: string): string {
     .trim();
 }
 
-// Preferred male voice keywords across OS platforms
 const MALE_VOICE_HINTS = ['hemant', 'ravi', 'madhur', 'mohan', 'valluvar', 'david', 'george', 'guy', 'james', 'male', 'natural'];
 
 export function useVoice({ language, onTranscript }: UseVoiceOptions) {
@@ -34,6 +33,7 @@ export function useVoice({ language, onTranscript }: UseVoiceOptions) {
 
   const recognitionRef = useRef<any>(null);
   const isListeningRef = useRef(false);
+  const currentAudioRef = useRef<HTMLAudioElement | null>(null);
 
   // Initialize available voices and speech recognition capabilities on client
   useEffect(() => {
@@ -74,6 +74,11 @@ export function useVoice({ language, onTranscript }: UseVoiceOptions) {
     }
 
     try {
+      // Stop any current audio before listening
+      if (currentAudioRef.current) {
+        currentAudioRef.current.pause();
+        currentAudioRef.current = null;
+      }
       if (window.speechSynthesis) {
         window.speechSynthesis.cancel();
       }
@@ -143,69 +148,106 @@ export function useVoice({ language, onTranscript }: UseVoiceOptions) {
 
   const speak = useCallback(
     (text: string, onStart?: () => void, onEnd?: () => void) => {
-      if (typeof window === 'undefined' || !window.speechSynthesis) return;
+      if (typeof window === 'undefined') return;
 
-      window.speechSynthesis.cancel();
+      // Stop any existing speech or audio
+      if (currentAudioRef.current) {
+        currentAudioRef.current.pause();
+        currentAudioRef.current = null;
+      }
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
 
       const cleanText = sanitizeTextForSpeech(text);
       if (!cleanText) return;
 
-      const utterance = new SpeechSynthesisUtterance(cleanText);
       const targetLangCode = getSpeechCode(language);
-      utterance.lang = targetLangCode;
-      utterance.rate = 0.95; // Natural human male speech pace
-      utterance.pitch = 0.92; // Warm male pitch
+      const langPrefix = language.toLowerCase();
+      const currentVoices = voices.length > 0 ? voices : window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
 
-      const currentVoices = voices.length > 0 ? voices : window.speechSynthesis.getVoices();
-      if (currentVoices.length > 0) {
-        const langPrefix = language.toLowerCase();
-        
-        // Find matching voices for target language
-        const langMatchingVoices = currentVoices.filter(
-          (v) =>
-            v.lang.toLowerCase() === targetLangCode.toLowerCase() ||
-            v.lang.toLowerCase().replace('_', '-').startsWith(langPrefix) ||
-            v.lang.toLowerCase().startsWith(langPrefix)
-        );
+      // Check if browser has a native voice for this specific language
+      const nativeVoice = currentVoices.find(
+        (v) =>
+          v.lang.toLowerCase() === targetLangCode.toLowerCase() ||
+          v.lang.toLowerCase().replace('_', '-').startsWith(langPrefix) ||
+          v.lang.toLowerCase().startsWith(langPrefix)
+      );
 
-        if (langMatchingVoices.length > 0) {
-          // Look for male voice specifically in matching language
-          const maleVoice = langMatchingVoices.find((v) =>
-            MALE_VOICE_HINTS.some((hint) => v.name.toLowerCase().includes(hint))
-          );
-          utterance.voice = maleVoice || langMatchingVoices[0];
-        } else {
-          // Fallback to any general male voice if language-specific voice not installed
-          const generalMaleVoice = currentVoices.find((v) =>
-            MALE_VOICE_HINTS.some((hint) => v.name.toLowerCase().includes(hint))
-          );
-          if (generalMaleVoice) {
-            utterance.voice = generalMaleVoice;
-          }
-        }
-      }
+      if (nativeVoice && window.speechSynthesis) {
+        // Play using native browser speech synthesis
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = targetLangCode;
+        utterance.voice = nativeVoice;
+        utterance.rate = 0.95;
+        utterance.pitch = 0.94;
 
-      utterance.onstart = () => {
+        utterance.onstart = () => {
+          setStatus('speaking');
+          onStart?.();
+        };
+
+        utterance.onend = () => {
+          setStatus('idle');
+          onEnd?.();
+        };
+
+        utterance.onerror = () => {
+          setStatus('idle');
+        };
+
         setStatus('speaking');
-        onStart?.();
-      };
+        window.speechSynthesis.speak(utterance);
+      } else {
+        // Stream clear native audio via the /api/tts endpoint for 100% language coverage
+        const ttsUrl = `/api/tts?text=${encodeURIComponent(cleanText.slice(0, 300))}&lang=${encodeURIComponent(language)}`;
+        const audio = new Audio(ttsUrl);
+        currentAudioRef.current = audio;
 
-      utterance.onend = () => {
-        setStatus('idle');
-        onEnd?.();
-      };
+        audio.onplay = () => {
+          setStatus('speaking');
+          onStart?.();
+        };
 
-      utterance.onerror = () => {
-        setStatus('idle');
-      };
+        audio.onended = () => {
+          setStatus('idle');
+          currentAudioRef.current = null;
+          onEnd?.();
+        };
 
-      setStatus('speaking');
-      window.speechSynthesis.speak(utterance);
+        audio.onerror = () => {
+          // Fallback to basic browser synthesis if network stream fails
+          if (window.speechSynthesis) {
+            const fallbackUtterance = new SpeechSynthesisUtterance(cleanText);
+            fallbackUtterance.lang = targetLangCode;
+            fallbackUtterance.onstart = () => {
+              setStatus('speaking');
+              onStart?.();
+            };
+            fallbackUtterance.onend = () => {
+              setStatus('idle');
+              onEnd?.();
+            };
+            window.speechSynthesis.speak(fallbackUtterance);
+          } else {
+            setStatus('idle');
+          }
+        };
+
+        setStatus('speaking');
+        audio.play().catch(() => {
+          setStatus('idle');
+        });
+      }
     },
     [language, voices]
   );
 
   const stopSpeaking = useCallback(() => {
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      currentAudioRef.current = null;
+    }
     if (typeof window !== 'undefined' && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
