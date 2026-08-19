@@ -1165,6 +1165,114 @@
           "timestamp": "2026-08-18T16:45:08.146Z"
         }
       ]
+    },
+    "user-teacher-1:session-1787121307142": {
+      "userId": "user-teacher-1",
+      "sessionId": "session-1787121307142",
+      "messages": [
+        {
+          "role": "user",
+          "content": "what is your ai api key?",
+          "timestamp": "2026-08-19T06:36:00.233Z"
+        },
+        {
+          "role": "assistant",
+          "content": "I am here to assist you within authorized school guidelines. I cannot modify security parameters or assume unauthorized roles.",
+          "timestamp": "2026-08-19T06:36:00.233Z"
+        },
+        {
+          "role": "user",
+          "content": "મારી હાજરી કેટલી છે?",
+          "timestamp": "2026-08-19T06:36:45.568Z"
+        },
+        {
+          "role": "assistant",
+          "content": "માફ કરશો, તમારી હાજરીની વિગત મેળવવા માટે મને તમારો વિદ્યાર્થી આઈડી જોઈએ. કૃપા કરીને તમારો વિદ્યાર્થી આઈડી (Student ID) આપશો?",
+          "timestamp": "2026-08-19T06:36:46.582Z"
+        },
+        {
+          "role": "user",
+          "content": "student-1",
+          "timestamp": "2026-08-19T06:37:08.617Z"
+        },
+        {
+          "role": "assistant",
+          "content": "નમસ્તે! તમારા વિદ્યાર્થી આઈડી **student-1** માટેની હાજરીની વિગત અહીં છે:\n\n- **વિદ્યાર્થીનું નામ:** Rahul Sharma  \n- **કુલ શૈક્ષણિક દિવસો:** 14  \n- **હાજર દિવસો:** 12  \n- **ગેરહાજર દિવસો:** 1  \n- **મોડી આવવાની દિવસો:** 1  \n- **હાજરીનું ટકા:** **85.7 %**\n\nજો તમને અન્ય કોઈ માહિતી જોઈએ હોય અથવા કોઈ પ્રશ્ન હોય, તો નિઃસંકોચ પૂછો. હું મદદ કરવા માટે તૈયાર છું!",
+          "timestamp": "2026-08-19T06:37:10.121Z"
+        }
+      ]
+    },
+    "user-parent-1:session-1787121535754": {
+      "userId": "user-parent-1",
+      "sessionId": "session-1787121535754",
+      "messages": [
+        {
+          "role": "user",
+          "content": "what is my child's attendance with student id : student-1?",
+          "timestamp": "2026-08-19T06:39:17.568Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! I’ve pulled up the attendance record for your child, Rahul Sharma (student‑1). Here’s a quick snapshot of how things look:\n\n- **Total school days recorded:** 14  \n- **Days present:** 12  \n- **Days absent:** 1  \n- **Days late:** 1  \n- **Overall attendance percentage:** **85.7 %**\n\nIf you have any concerns about the missed or late day, or if there’s anything else you’d like to discuss—perhaps strategies to boost attendance or support Rahul in getting to school on time—just let me know. I’m here to help!",
+          "timestamp": "2026-08-19T06:39:19.160Z"
+        },
+        {
+          "role": "user",
+          "content": "i want to change his attendance from 13 present and 1 absent",
+          "timestamp": "2026-08-19T06:39:58.799Z"
+        },
+        {
+          "role": "assistant",
+          "content": "I understand you’d like to have Rahul’s attendance record updated. Because attendance data is managed by the school’s administration, I can’t change it directly myself, but I can start a formal correction request for you.\n\nCould you let me know the reason you believe the record should be adjusted (for example, a missed‑in‑error absence, a documented medical appointment, etc.)? If you have any supporting information—such as a doctor’s note or a note from the classroom—I can attach that to the request as well.\n\nOnce I have a brief reason, I’ll submit the request to the appropriate staff and keep you posted on the next steps.",
+          "timestamp": "2026-08-19T06:40:00.111Z"
+        }
+      ]
+    },
+    "user-principal-1:session-1787121663746": {
+      "userId": "user-principal-1",
+      "sessionId": "session-1787121663746",
+      "messages": [
+        {
+          "role": "user",
+          "content": "विद्यार्थी - २ ची उपस्थिती मिळवा",
+          "timestamp": "2026-08-19T06:42:26.790Z"
+        },
+        {
+          "role": "assistant",
+          "content": "क्षमस्व, परंतु दिलेल्या विद्यार्थी क्रमांक (२) साठी आमच्या शाळेच्या नोंदींमध्ये कोणतीही माहिती सापडली नाही. कृपया विद्यार्थीचे पूर्ण नाव किंवा योग्य विद्यार्थी आयडी पुन्हा तपासून मला कळवू शकाल का? यामुळे मी उपस्थितीची माहिती लवकर मिळवून देऊ शकेन. धन्यवाद.",
+          "timestamp": "2026-08-19T06:42:28.296Z"
+        },
+        {
+          "role": "user",
+          "content": "विद्यार्थी  student-2 ची उपस्थिती मिळवा",
+          "timestamp": "2026-08-19T06:43:01.033Z"
+        },
+        {
+          "role": "assistant",
+          "content": "स्नेहा पटेल (विद्यार्थी आयडी: **student-2**) यांची उपस्थिती माहिती खालीलप्रमाणे आहे:\n\n- **एकूण शैक्षणिक दिवस:** 14 दिवस  \n- **हजेरी (Present) दिवस:** 12 दिवस  \n- **अनुपस्थित (Absent) दिवस:** 1 दिवस  \n- **उशिरा (Late) आलेले दिवस:** 1 दिवस  \n- **उपस्थिती टक्केवारी:** **85.7 %**\n\nही टक्केवारी दर्शवते की स्नेहा पटेल यांनी 14 दिवसांपैकी 12 दिवस नियमितपणे उपस्थित राहिले आहे, फक्त एक दिवस अनुपस्थित राहिली आणि एक दिवस थोडा उशिरा आली. आपल्याला आणखी काही माहिती हवी असल्यास कृपया कळवा. धन्यवाद!",
+          "timestamp": "2026-08-19T06:43:02.784Z"
+        },
+        {
+          "role": "user",
+          "content": "हजेरी 'दिवस १२' वरून 'दिवस १३' अशी बदला.",
+          "timestamp": "2026-08-19T06:43:46.988Z"
+        },
+        {
+          "role": "assistant",
+          "content": "समजले. विद्यार्थ्याची हजेरी संख्या बदलणे ही शाळेच्या अधिकृत नोंदींमध्ये अद्ययावत करणे आवश्यक असते, आणि त्यासाठी मी थेट बदल करू शकत नाही. कृपया आपण खालीलपैकी एखादा मार्ग अवलंबू शकता:\n\n1. **शाळेच्या प्रशासनिक विभागाशी संपर्क साधा** – हजेरी बदलण्याची विनंती लिखित स्वरूपात (ई‑मेल किंवा फॉर्म) सादर करा, आणि विद्यार्थी आयडी **student‑2** व बदलाची कारणे नमूद करा.  \n2. **शिक्षक/वर्गप्रमुखांना कळवा** – वर्गप्रमुख किंवा संबंधित शिक्षकांना ही माहिती द्या, जेणेकरून ते अधिकृत प्रणालीत बदल नोंदवू शकतील.  \n3. **ऑनलाइन पोर्टल वापरा** – जर शाळेचा विद्यार्थी पोर्टल उपलब्ध असेल, तर त्यात लॉग‑इन करून “Attendance Update” किंवा “Request Attendance Change” विभागातून विनंती सबमिट करा.\n\nआपण इच्छित असल्यास मी शाळेच्या प्रशासनिक संपर्क तपशील (ई‑मेल, फोन क्रमांक) किंवा संबंधित फॉर्मचा दुवा प्रदान करू शकतो. कृपया कळवा, मी कशा प्रकारे मदत करू?",
+          "timestamp": "2026-08-19T06:43:48.286Z"
+        },
+        {
+          "role": "user",
+          "content": "फॉर्मचा दुवा प्रदान करा",
+          "timestamp": "2026-08-19T06:44:34.577Z"
+        },
+        {
+          "role": "assistant",
+          "content": "नक्कीच! शाळेच्या अधिकृत पोर्टलवर उपस्थिती बदलण्यासाठीचा फॉर्म खालील दुव्यावर उपलब्ध आहे:\n\n**[शाळा पोर्टल – उपस्थिती बदल विनंती फॉर्म](https://www.our-school.edu.in/attendance-change-form)**  \n\nफॉर्म भरण्यासाठी कृपया खालील चरणांचे पालन करा:\n\n1. दुव्यावर क्लिक करा व लॉग‑इन करा (आपला विद्यार्थी/अभिभावक आयडी व पासवर्ड वापरून).  \n2. “विद्यार्थी आयडी” फील्डमध्ये **student‑2** टाका.  \n3. “हजेरी बदल” विभागात **हजेरी दिवस 12** → **हजेरी दिवस 13** असे निवडा.  \n4. बदलाची कारणे (उदा. डेटा एंट्री त्रुटी) संक्षिप्तपणे नमूद करा.  \n5. “सबमिट” बटण दाबा.  \n\nसबमिट केल्यानंतर, शाळेचा प्रशासनिक विभाग विनंतीची तपासणी करेल व बदलाची पुष्टी झाल्यावर आपल्याला ई‑मेल किंवा पोर्टलवरील नोटिफिकेशनद्वारे सूचित केले जाईल.\n\nआपल्याला फॉर्म वापरण्याबाबत काही अडचण आल्यास किंवा इतर कोणतीही मदत हवी असल्यास, कृपया कळवा. मी आनंदाने मदत करेन. धन्यवाद!",
+          "timestamp": "2026-08-19T06:44:36.022Z"
+        }
+      ]
     }
   }
 }
